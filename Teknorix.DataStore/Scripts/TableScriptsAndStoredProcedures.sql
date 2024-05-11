@@ -455,21 +455,21 @@ BEGIN
     OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY;
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[SPU_UpdateDepartment]    Script Date: 11-05-2024 15:21:57 ******/
+/****** Object:  StoredProcedure [dbo].[SPU_UpdateDepartment]    Script Date: 11-05-2024 16:32:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[SPU_UpdateDepartment]
     @Id INT,
-    @Title NVARCHAR(255),
+    @Title NVARCHAR(255) NULL,
     @RowsAffected INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
 
     UPDATE Departments
-    SET Title = @Title
+    SET Title = ISNULL(@Title, Title)
     WHERE Id = @Id;
 
     -- Get the number of rows affected and assign it to the output parameter

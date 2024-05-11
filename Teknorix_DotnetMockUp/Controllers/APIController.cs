@@ -72,7 +72,7 @@ namespace Teknorix_DotnetMockUp.Controllers
             }
         }
 
-        [Authorize]//[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet]
         [Route("/v1/jobs/{id}")]
         public async Task<IActionResult> GetJobDetailsBasedOnId(int id)
